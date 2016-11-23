@@ -1,0 +1,20 @@
+<h2>Hugh's Excellent Restaurants Guide</h2>
+<ul>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Phone Number</th>
+    <th>Category</th>
+  </tr>
+<% @restaurants.each do |r| %>
+  <tr>
+    <td><%= link_to r.name, restaurant_path(r) %></td>
+    <td><%= r.address %></td>
+    <td><%= r.phone_number %></td>
+    <td><%= r.category.capitalize %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to "add a new restaurant", new_restaurant_path %>

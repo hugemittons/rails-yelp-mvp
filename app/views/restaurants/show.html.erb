@@ -1,0 +1,28 @@
+<h2><%= @restaurant.name %></h2>
+
+  <% @restaurant.reviews.each do |review|
+    review_array = []
+    review_array << review.rating
+    @average = review_array.inject(0, &:+) / review_array.length
+  end %>
+
+   <h5><%= @restaurant.category.capitalize %> restaurant</h5>
+   <h5>average customer rating <font color="#FFD50A"><% @average.times do %>&#9733;<%end%></font></h5>
+
+   <p>- - - - - - - - -</p>
+
+    <p style="line-height: 1.5em; font-weight: bold"><%= @restaurant.address %><br />
+    telephone: <%= @restaurant.phone_number %></p>
+
+    <p>- - - - - - - - -</p>
+
+<h5>Customer Reviews</h5>
+  <% @restaurant.reviews.each do |review| %>
+  <p><% review.rating.times do %>&#9733;<%end%><br />
+  <%= review.content %></p>
+  <% end %>
+
+  <p>- - - - - - - - -</p>
+
+<%= link_to "review this restaurant", new_restaurant_review_path(@restaurant) %>
+<br /><%= link_to "back to restaurants", restaurants_path %>
